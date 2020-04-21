@@ -31,11 +31,22 @@ def skip_a_line(list):
 	return list[1::2]
 
 
-li_list = skip_a_line(li_list)
-print(li_list)
-	
+# this variable will be used to see if title contains keyword
+key_word = 'COVID-19'
 
-print('hello world')
+li_list = skip_a_line(li_list)
+for li in li_list:
+	title = li.find('a').contents[0]
+	link = li.find('a')['href']
+	if key_word in title:
+		print(title)
+		print(link)
+
+
+
+
+
+
 
 
 
