@@ -35,12 +35,24 @@ def skip_a_line(list):
 key_word = 'COVID-19'
 
 li_list = skip_a_line(li_list)
-for li in li_list:
-	title = li.find('a').contents[0]
-	link = li.find('a')['href']
-	if key_word in title:
-		print(title)
-		print(link)
+
+with open('data.csv', 'w') as csv_file:
+	csv_writer = writer(csv_file)
+	headers = ['Title', 'Link', 'Date']
+	csv_writer.writerow(headers)
+
+	for li in li_list:
+		title = li.find('a').contents[0]
+		link = li.find('a')['href']
+		date = li.find('span').contents[0]
+		if key_word in title:
+			csv_writer.writerow([title, link, date])
+			# print(title)
+			# print(link)
+			# print(date)
+
+
+
 
 
 
